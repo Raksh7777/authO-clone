@@ -1,17 +1,18 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-const client = require("./config/redis");
+const bodyParser=require("body-parser")
+
 const port = process.env.PORT || 3000;
 const dbConnection = require("./config/postgres");
+const router=require('./routes/index')
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-client.set("framework", "ReactJS");
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/api/v1",router);
 
-let check = client.get("framework");
-console.log("check", check);
+
+
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);

@@ -1,18 +1,25 @@
 const SGmail = require("@sendgrid/mail");
-SGmail.setApikey(process.env.SENDGRID_API_KEY);
-function newUserEmail(email, name) {
+const generateOtp=require
+SGmail.setApiKey(process.env.SENDGRID_API_KEY);
+function newUserEmail(email, name,OTP) {
+  try{
   const message = {
     to: email, //email variable
     from: {
-      email: "your email",
-      name: "Name of user you want to  send email as",
+      email: "rakshika7777@gmail.com",
+      name: "AuthO-Clone",
     },
-    message: `Hi there, ${name}`,
-    subject: "This is a test Email",
+    text: `Hi${name}, Please enter OTP ${OTP} to verify your email.`,
+    subject: "Otp verification",
   };
   SGmail.send(message).then((sent) => {
-    // Awesome Logic to check if mail was sent
+    // Awesome Logic to check if mail was sents
+    
   });
+}
+catch(error){
+  console.log(error)
+}
 }
 module.exports = {
   newUserEmail,

@@ -4,7 +4,7 @@ const pg = require("pg");
 
 const conString = process.env.POSTGRES_URL;
 const client = new pg.Client(conString);
-module.exports = client.connect(function (err) {
+ client.connect(function (err) {
   if (err) {
     return console.error("could not connect to postgres", err);
   }
@@ -14,6 +14,7 @@ module.exports = client.connect(function (err) {
     }
     console.log(result.rows[0].theTime);
     // >> output: 2018-08-23T14:02:57.117Z
-    client.end();
   });
 });
+
+module.exports=client;

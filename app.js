@@ -2,9 +2,7 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const bodyParser=require("body-parser")
-
 const port = process.env.PORT || 3000;
-const dbConnection = require("./config/postgres");
 const router=require('./routes/index')
 
 app.use(bodyParser.json())
